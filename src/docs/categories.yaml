@@ -1,0 +1,120 @@
+tags:
+  - name: categories
+    description: categories API
+
+paths:
+  # [GET] products
+  /categories:
+    get:
+      tags:
+        - categories
+      summary: Find All categories
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+    # [POST] categories
+    post:
+      tags:
+        - categories
+      summary: Add categories
+      parameters:
+        - name: body
+          in: body
+          description: categories Data
+          required: true
+          schema:
+            $ref: '#/definitions/categories'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [GET] users/id
+  /categories/{id}:
+    get:
+      tags:
+        - categories
+      summary: Find category By Id
+      parameters:
+        - name: id
+          in: path
+          description: category Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [PUT] categories/id
+    put:
+      tags:
+        - categories
+      summary: Update category By Id
+      parameters:
+        - name: id
+          in: path
+          description: category Id
+          required: true
+        - name: body
+          in: body
+          description: category Data
+          required: true
+          schema:
+            $ref: '#/definitions/categories'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [DELETE] categories/id
+    delete:
+      tags:
+        - categories
+      summary: Delete categories By Id
+      parameters:
+        - name: id
+          in: path
+          description: category Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  products:
+    type: object
+    required:
+      - name
+      - des
+    properties:
+      name:
+        type: string
+        description: category name
+      des:
+        type: string
+        description: category description
+
+schemes:
+  - https
+  - http

@@ -1,0 +1,129 @@
+tags:
+  - name: products
+    description: products API
+
+paths:
+  # [GET] products
+  /products:
+    get:
+      tags:
+        - products
+      summary: Find All Products
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+    # [POST] users
+    post:
+      tags:
+        - products
+      summary: Add Products
+      parameters:
+        - name: body
+          in: body
+          description: products Data
+          required: true
+          schema:
+            $ref: '#/definitions/products'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [GET] users/id
+  /products/{id}:
+    get:
+      tags:
+        - products
+      summary: Find Product By Id
+      parameters:
+        - name: id
+          in: path
+          description: Product Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [PUT] products/id
+    put:
+      tags:
+        - products
+      summary: Update Product By Id
+      parameters:
+        - name: id
+          in: path
+          description: product Id
+          required: true
+        - name: body
+          in: body
+          description: product Data
+          required: true
+          schema:
+            $ref: '#/definitions/products'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [DELETE] products/id
+    delete:
+      tags:
+        - products
+      summary: Delete Products By Id
+      parameters:
+        - name: id
+          in: path
+          description: product Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  products:
+    type: object
+    required:
+      - name
+      - price
+    properties:
+      name:
+        type: string
+        description: product name
+      price:
+        type: number
+        description: product price
+      dPrice:
+        type: number
+        description: Discounted price
+      des:
+        type: string
+        description: Product Description
+      category:
+        type: string
+        description: Product category
+
+schemes:
+  - https
+  - http

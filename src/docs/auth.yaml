@@ -1,0 +1,76 @@
+tags:
+  - name: auth
+    description: auth API
+
+paths:
+  # [POST] signup
+  /signup:
+    post:
+      tags:
+        - auth
+      summary: SignUp User
+      parameters:
+        - name: body
+          in: body
+          description: user Data
+          required: true
+          schema:
+            $ref: '#/definitions/signup'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  /login:
+    post:
+      tags:
+        - auth
+      summary: Login User
+      parameters:
+        - name: body
+          in: body
+          description: user Data
+          required: true
+          schema:
+            $ref: '#/definitions/signup'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  signup:
+    type: object
+    required:
+      - firstName
+      - lastName
+      - email
+      - password
+    properties:
+      firstName:
+        type: string
+        description: user First Name
+      lastName:
+        type: string
+        description: user Last Name
+      email:
+        type: string
+        description: user Email
+      password:
+        type: string
+        description: user Password
+
+schemes:
+  - https
+  - http
